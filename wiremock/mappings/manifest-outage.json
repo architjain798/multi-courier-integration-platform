@@ -1,0 +1,13 @@
+{
+  "priority": 2,
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/v1/services/manifest/",
+    "bodyPatterns": [{ "matchesJsonPath": "$[?(@.itemDescription == 'FORCE_OUTAGE')]" }]
+  },
+  "response": {
+    "status": 502,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": { "detail": "simulated upstream outage" }
+  }
+}

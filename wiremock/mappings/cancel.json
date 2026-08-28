@@ -1,0 +1,21 @@
+{
+  "priority": 5,
+  "request": { "method": "POST", "urlPath": "/api/v1/services/cancel/" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "status": "Success",
+      "message": "Cancellation Proccess",
+      "successResponse": [
+        {
+          "orderNumber": "",
+          "awb": "{{jsonPath request.body '$.awbs'}}",
+          "message": "Cancelled"
+        }
+      ],
+      "failureResponse": []
+    }
+  }
+}

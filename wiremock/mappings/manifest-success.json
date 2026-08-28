@@ -1,0 +1,26 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/v1/services/manifest/",
+    "bodyPatterns": [{ "matchesJsonPath": "$[0].orderNumber" }]
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "status": "Success",
+      "successResponse": [
+        {
+          "orderNumber": "{{jsonPath request.body '$[0].orderNumber'}}",
+          "awbNumber": "{{randomValue length=12 type='NUMERIC'}}",
+          "routeCode": "GGN/DLHH",
+          "shippingLabel": "http://localhost:8080/api/v1/services/print-label/?key=offline",
+          "customerCode": "UEBCUS0008"
+        }
+      ],
+      "errorResponse": []
+    }
+  }
+}

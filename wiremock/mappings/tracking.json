@@ -1,0 +1,29 @@
+{
+  "priority": 5,
+  "request": { "method": "GET", "urlPath": "/api/v1/services/tracking-pub/" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "status": "Success",
+      "message": "Tracking",
+      "data": {
+        "awbNumber": "{{request.query.awb}}",
+        "currentStatusCode": "MAN",
+        "currentStatusCodeDescription": "Shipment Manifested",
+        "currentStatusDateTime": "27 Aug 2026, 15:44",
+        "scans": [
+          {
+            "statusDateTime": "27 Aug 2026, 15:44",
+            "statusCode": "MAN",
+            "statusCodeDescription": "Shipment Manifested",
+            "reasonCode": "",
+            "reasonCodeDescription": "",
+            "currentLocation": "Gurgaon"
+          }
+        ]
+      }
+    }
+  }
+}

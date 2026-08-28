@@ -1,0 +1,13 @@
+{
+  "priority": 2,
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/v1/services/manifest/",
+    "bodyPatterns": [{ "matchesJsonPath": "$[?(@.itemDescription == 'FORCE_TIMEOUT')]" }]
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds": 30000,
+    "jsonBody": { "status": "Success", "successResponse": [], "errorResponse": [] }
+  }
+}

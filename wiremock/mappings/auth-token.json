@@ -1,0 +1,14 @@
+{
+  "priority": 1,
+  "request": { "method": "POST", "urlPath": "/api/v1/auth/getToken/" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "access_token": "wiremock-offline-token",
+      "expires_in": 86400,
+      "token_type": "Bearer",
+      "status": "Success"
+    }
+  }
+}

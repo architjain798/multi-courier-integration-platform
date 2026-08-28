@@ -1,0 +1,27 @@
+{
+  "priority": 5,
+  "request": { "method": "GET", "urlPath": "/api/v1/location/pincodes/" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "status": "Success",
+      "message": "Pincodes",
+      "data": [
+        {
+          "id": 1,
+          "pincode": 122001,
+          "inbound": true,
+          "outbound": true,
+          "rtn": true,
+          "isActive": true,
+          "serviceCenter": "Gurgaon DC - GGN",
+          "city": "Gurgaon - GGN",
+          "state": "Haryana - HR",
+          "serviceType": "SDD,NDD,ATA,PTP,2HR"
+        }
+      ],
+      "errorPincodes": []
+    }
+  }
+}

@@ -1,0 +1,2403 @@
+{
+  "item": [
+    {
+      "id": "f337622d-6292-4564-985a-6e9454856bc8",
+      "name": "Couriers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8415dea-6eca-4d4f-ab88-b0699c01c2a1",
+          "name": "Supported couriers and their capabilities",
+          "request": {
+            "name": "Supported couriers and their capabilities",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "couriers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5fba4baf-bde4-4043-9ea2-fdb94675b2b0",
+              "name": "Registered couriers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "couriers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87c13039-fdfe-44c2-bc60-ac5f20186b02",
+          "name": "Check whether a courier serves the given pincodes",
+          "request": {
+            "name": "Check whether a courier serves the given pincodes",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "serviceability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "courier_partner",
+                  "value": "urbanebolt",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "pincodes",
+                  "value": "122001,122017",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bdc18508-5a5e-4697-8353-b1ce8852febc",
+              "name": "Serviceability per pincode",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "serviceability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "courier_partner",
+                      "value": "urbanebolt"
+                    },
+                    {
+                      "key": "pincodes",
+                      "value": "122001,122017"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0505cf58-87ea-4230-83f2-a9305276009d",
+              "name": "Validation failed or the courier_partner is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "serviceability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "courier_partner",
+                      "value": "urbanebolt"
+                    },
+                    {
+                      "key": "pincodes",
+                      "value": "122001,122017"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ff453395-12a6-49df-8b6f-e320fff2a717",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6be311c-c067-417e-b580-1adc71af6fdb",
+          "name": "Create a shipment with any courier",
+          "request": {
+            "name": "Create a shipment with any courier",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "820af5d4-6378-484c-bd78-7304d915c68f",
+              "name": "Idempotent replay of an order_id already submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8eedfba0-bccc-4eb7-93ea-e6b019979827",
+              "name": "Shipment created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faf4b1dd-54f0-45ff-aa5c-2fa9cc3c58f3",
+              "name": "Validation failed or the courier_partner is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd45e8e9-5a25-4ecd-ad96-6cf5e93026b5",
+              "name": "Order or batch not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d292925-5a2a-447f-9b26-f8c224fa3bd3",
+              "name": "Shipment is in a state that forbids the operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f902e51-d168-4050-9e65-d705b3820a3e",
+              "name": "The courier rejected the shipment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6981d19-7842-42cd-b9c4-c2dce5ecba5a",
+              "name": "The courier is unavailable or rejected our credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99e05af3-3ca8-44c1-b468-16cefe641629",
+              "name": "The courier timed out",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cf38a73-380a-48ac-8edf-b6b37fed4ece",
+          "name": "List orders, optionally filtered by status or courier",
+          "request": {
+            "name": "List orders, optionally filtered by status or courier",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "FAILED"
+                },
+                {
+                  "disabled": false,
+                  "key": "courier_partner",
+                  "value": "urbanebolt"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "723a6c64-4362-4324-b40a-6ad5b87cb3a9",
+              "name": "Matching orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "FAILED"
+                    },
+                    {
+                      "key": "courier_partner",
+                      "value": "urbanebolt"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c0aea71-4a38-4ef3-b003-ce053a82359f",
+          "name": "Submit up to 100 orders for background processing",
+          "request": {
+            "name": "Submit up to 100 orders for background processing",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orders\": [\n    {\n      \"courier_partner\": \"urbanebolt\",\n      \"order_id\": \"ORD-1001\",\n      \"payment_mode\": \"COD\",\n      \"service_level\": \"SAME_DAY\",\n      \"collectable_amount\": 1499,\n      \"declared_value\": 1499,\n      \"invoice\": {\n        \"number\": \"INV-1\",\n        \"date\": \"2026-08-27\",\n        \"value\": 1499\n      },\n      \"pickup\": {\n        \"name\": \"Warehouse\",\n        \"phone\": \"9425018023\",\n        \"line1\": \"Plot 137 Sector-I\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122017\",\n        \"country\": \"INDIA\",\n        \"type\": \"SELLER\"\n      },\n      \"delivery\": {\n        \"name\": \"Priya Sharma\",\n        \"phone\": \"8320226438\",\n        \"line1\": \"26 Om Nagar\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122001\",\n        \"country\": \"INDIA\",\n        \"type\": \"HOME\"\n      },\n      \"package\": {\n        \"weight_kg\": 1.1,\n        \"length_cm\": 12,\n        \"breadth_cm\": 10,\n        \"height_cm\": 10,\n        \"pieces\": 1\n      },\n      \"items\": [\n        {\n          \"description\": \"Paperback books\",\n          \"quantity\": 1\n        }\n      ]\n    },\n    {\n      \"courier_partner\": \"urbanebolt\",\n      \"order_id\": \"ORD-1002\",\n      \"payment_mode\": \"COD\",\n      \"service_level\": \"SAME_DAY\",\n      \"collectable_amount\": 1499,\n      \"declared_value\": 1499,\n      \"invoice\": {\n        \"number\": \"INV-1\",\n        \"date\": \"2026-08-27\",\n        \"value\": 1499\n      },\n      \"pickup\": {\n        \"name\": \"Warehouse\",\n        \"phone\": \"9425018023\",\n        \"line1\": \"Plot 137 Sector-I\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122017\",\n        \"country\": \"INDIA\",\n        \"type\": \"SELLER\"\n      },\n      \"delivery\": {\n        \"name\": \"Priya Sharma\",\n        \"phone\": \"8320226438\",\n        \"line1\": \"26 Om Nagar\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"999999\",\n        \"country\": \"INDIA\",\n        \"type\": \"HOME\"\n      },\n      \"package\": {\n        \"weight_kg\": 1.1,\n        \"length_cm\": 12,\n        \"breadth_cm\": 10,\n        \"height_cm\": 10,\n        \"pieces\": 1\n      },\n      \"items\": [\n        {\n          \"description\": \"Paperback books\",\n          \"quantity\": 1\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39bc7d7d-252a-4faa-8e1c-dacfa44ae0a8",
+              "name": "Batch accepted; poll status_url for per-order outcomes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orders\": [\n    {\n      \"courier_partner\": \"urbanebolt\",\n      \"order_id\": \"ORD-1001\",\n      \"payment_mode\": \"COD\",\n      \"service_level\": \"SAME_DAY\",\n      \"collectable_amount\": 1499,\n      \"declared_value\": 1499,\n      \"invoice\": {\n        \"number\": \"INV-1\",\n        \"date\": \"2026-08-27\",\n        \"value\": 1499\n      },\n      \"pickup\": {\n        \"name\": \"Warehouse\",\n        \"phone\": \"9425018023\",\n        \"line1\": \"Plot 137 Sector-I\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122017\",\n        \"country\": \"INDIA\",\n        \"type\": \"SELLER\"\n      },\n      \"delivery\": {\n        \"name\": \"Priya Sharma\",\n        \"phone\": \"8320226438\",\n        \"line1\": \"26 Om Nagar\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122001\",\n        \"country\": \"INDIA\",\n        \"type\": \"HOME\"\n      },\n      \"package\": {\n        \"weight_kg\": 1.1,\n        \"length_cm\": 12,\n        \"breadth_cm\": 10,\n        \"height_cm\": 10,\n        \"pieces\": 1\n      },\n      \"items\": [\n        {\n          \"description\": \"Paperback books\",\n          \"quantity\": 1\n        }\n      ]\n    },\n    {\n      \"courier_partner\": \"urbanebolt\",\n      \"order_id\": \"ORD-1002\",\n      \"payment_mode\": \"COD\",\n      \"service_level\": \"SAME_DAY\",\n      \"collectable_amount\": 1499,\n      \"declared_value\": 1499,\n      \"invoice\": {\n        \"number\": \"INV-1\",\n        \"date\": \"2026-08-27\",\n        \"value\": 1499\n      },\n      \"pickup\": {\n        \"name\": \"Warehouse\",\n        \"phone\": \"9425018023\",\n        \"line1\": \"Plot 137 Sector-I\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122017\",\n        \"country\": \"INDIA\",\n        \"type\": \"SELLER\"\n      },\n      \"delivery\": {\n        \"name\": \"Priya Sharma\",\n        \"phone\": \"8320226438\",\n        \"line1\": \"26 Om Nagar\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"999999\",\n        \"country\": \"INDIA\",\n        \"type\": \"HOME\"\n      },\n      \"package\": {\n        \"weight_kg\": 1.1,\n        \"length_cm\": 12,\n        \"breadth_cm\": 10,\n        \"height_cm\": 10,\n        \"pieces\": 1\n      },\n      \"items\": [\n        {\n          \"description\": \"Paperback books\",\n          \"quantity\": 1\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1991eef-5966-48d0-b49f-032df5b54832",
+              "name": "The batch envelope itself was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orders\": [\n    {\n      \"courier_partner\": \"urbanebolt\",\n      \"order_id\": \"ORD-1001\",\n      \"payment_mode\": \"COD\",\n      \"service_level\": \"SAME_DAY\",\n      \"collectable_amount\": 1499,\n      \"declared_value\": 1499,\n      \"invoice\": {\n        \"number\": \"INV-1\",\n        \"date\": \"2026-08-27\",\n        \"value\": 1499\n      },\n      \"pickup\": {\n        \"name\": \"Warehouse\",\n        \"phone\": \"9425018023\",\n        \"line1\": \"Plot 137 Sector-I\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122017\",\n        \"country\": \"INDIA\",\n        \"type\": \"SELLER\"\n      },\n      \"delivery\": {\n        \"name\": \"Priya Sharma\",\n        \"phone\": \"8320226438\",\n        \"line1\": \"26 Om Nagar\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122001\",\n        \"country\": \"INDIA\",\n        \"type\": \"HOME\"\n      },\n      \"package\": {\n        \"weight_kg\": 1.1,\n        \"length_cm\": 12,\n        \"breadth_cm\": 10,\n        \"height_cm\": 10,\n        \"pieces\": 1\n      },\n      \"items\": [\n        {\n          \"description\": \"Paperback books\",\n          \"quantity\": 1\n        }\n      ]\n    },\n    {\n      \"courier_partner\": \"urbanebolt\",\n      \"order_id\": \"ORD-1002\",\n      \"payment_mode\": \"COD\",\n      \"service_level\": \"SAME_DAY\",\n      \"collectable_amount\": 1499,\n      \"declared_value\": 1499,\n      \"invoice\": {\n        \"number\": \"INV-1\",\n        \"date\": \"2026-08-27\",\n        \"value\": 1499\n      },\n      \"pickup\": {\n        \"name\": \"Warehouse\",\n        \"phone\": \"9425018023\",\n        \"line1\": \"Plot 137 Sector-I\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"122017\",\n        \"country\": \"INDIA\",\n        \"type\": \"SELLER\"\n      },\n      \"delivery\": {\n        \"name\": \"Priya Sharma\",\n        \"phone\": \"8320226438\",\n        \"line1\": \"26 Om Nagar\",\n        \"city\": \"Gurgaon\",\n        \"state\": \"Haryana\",\n        \"pincode\": \"999999\",\n        \"country\": \"INDIA\",\n        \"type\": \"HOME\"\n      },\n      \"package\": {\n        \"weight_kg\": 1.1,\n        \"length_cm\": 12,\n        \"breadth_cm\": 10,\n        \"height_cm\": 10,\n        \"pieces\": 1\n      },\n      \"items\": [\n        {\n          \"description\": \"Paperback books\",\n          \"quantity\": 1\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75bdcf82-79bc-4626-a180-904fdb9dff99",
+          "name": "Read a single order",
+          "request": {
+            "name": "Read a single order",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d06f32aa-4211-4504-80d0-4ea4698adaa6",
+              "name": "The order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "949db1c9-cd19-444b-88c3-88a77d81270f",
+              "name": "Order or batch not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53346754-3d90-4a06-9e00-88f841a00e90",
+          "name": "Track a shipment and append any new courier scans",
+          "request": {
+            "name": "Track a shipment and append any new courier scans",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                ":orderId",
+                "track"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "de526fb6-e006-436c-afec-1e20049c374d",
+              "name": "Current status plus append-only history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bca23fa0-e877-428e-973e-183e463b82e2",
+              "name": "Order or batch not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52a07d29-4825-4044-a05e-7d5c83078d18",
+              "name": "Shipment is in a state that forbids the operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86a67bb2-69b9-4858-a94f-a590e6942678",
+          "name": "Cancel a shipment before pickup",
+          "request": {
+            "name": "Cancel a shipment before pickup",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                ":orderId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c5f5eb0-b277-49af-b935-fff3e3cc53ff",
+              "name": "Cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "100132d7-9956-41f0-a808-cda52b1d6bbf",
+              "name": "Shipment is in a state that forbids the operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3838b67-c6d7-4967-922f-d7ffe9a8f567",
+          "name": "Re-drive a failed order through the same pipeline",
+          "request": {
+            "name": "Re-drive a failed order through the same pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                ":orderId",
+                "retry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{orderId}}",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0665ff8-02af-4439-9115-ee74c721520f",
+              "name": "Retried",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef22f6db-d258-4f4a-8f18-bb3f815ba3a6",
+              "name": "Shipment is in a state that forbids the operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "ORD-1001",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8149bd0c-eeba-4ac9-b5fe-ae1d2b93590c",
+          "name": "Per-order outcomes for a bulk submission",
+          "request": {
+            "name": "Per-order outcomes for a bulk submission",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "batches",
+                ":batchId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{batchId}}",
+                  "key": "batchId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7fc06a78-47f9-4ce7-b530-223612fa265c",
+              "name": "Batch status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "3f8f5b1a-1f2e-4d6b-9c0a-8b3c2d1e0f44",
+                      "key": "batchId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d26a86cc-923b-426b-a881-13dff5b5ec30",
+              "name": "Order or batch not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "batches",
+                    ":batchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "3f8f5b1a-1f2e-4d6b-9c0a-8b3c2d1e0f44",
+                      "key": "batchId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5a59b9d0-5a46-4271-be7a-0a8bee8a36a6",
+      "name": "Operations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fd92adb-2f42-4560-9010-2fd17074eedd",
+          "name": "Liveness probe - answers whenever the process is up",
+          "request": {
+            "name": "Liveness probe - answers whenever the process is up",
+            "description": {},
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8d0af02-dca1-435e-89be-834946e5b7ba",
+              "name": "Process is alive",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f8cca73-3d70-422a-8f85-d9f43d31e7a8",
+          "name": "Readiness probe - checks Postgres, Redis and the courier registry",
+          "request": {
+            "name": "Readiness probe - checks Postgres, Redis and the courier registry",
+            "description": {},
+            "url": {
+              "path": [
+                "health",
+                "ready"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ae897ab-5a93-4660-a58e-cac6ac89d2a5",
+              "name": "Every dependency is reachable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health",
+                    "ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b724d11f-8682-4807-8498-ae71e70e62f4",
+              "name": "At least one dependency is down; the body names which",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health",
+                    "ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Where this API is reachable",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test('answers with the standard envelope', function () {",
+          "  pm.expect(pm.response.json()).to.have.property('success');",
+          "});",
+          "",
+          "const payload = pm.response.json().data;",
+          "if (payload && payload.order_id) {",
+          "  pm.collectionVariables.set('orderId', payload.order_id);",
+          "}",
+          "if (payload && payload.batch_id) {",
+          "  pm.collectionVariables.set('batchId', payload.batch_id);",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "orderId",
+      "value": "ORD-1001",
+      "type": "string"
+    },
+    {
+      "key": "batchId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "info": {
+    "_postman_id": "43928b85-2b9a-4080-9230-111f313aadbf",
+    "name": "Multi-Courier Integration Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Courier-agnostic shipping API. Callers pass a courier_partner and a normalized payload; the platform maps it to whichever courier is selected.",
+      "type": "text/plain"
+    }
+  }
+}
