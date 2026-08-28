@@ -47,8 +47,17 @@ docker compose up -d wiremock
 URBANEBOLT_BASE_URL=http://localhost:8080 npm run dev
 ```
 
-The stubs cover authentication, manifest success, an unserviceable pincode, a 502 outage and a
-30-second stall. An order whose `items[0].description` is `FORCE_OUTAGE` or `FORCE_TIMEOUT` triggers
+Or bring up the whole stack that way in one step — this is exactly what CI runs:
+
+```bash
+cp .env.ci .env
+docker compose up -d --build --wait
+npx newman run postman/multi-courier.postman_collection.json
+```
+
+The stubs cover authentication, tracking, cancellation, pincode lookup, a 502 outage and a
+30-second stall. The manifest stub reports per-item outcomes the way the real endpoint does, so a
+bulk submission offline shows real partial success rather than all-or-nothing. An order whose `items[0].description` is `FORCE_OUTAGE` or `FORCE_TIMEOUT` triggers
 the last two, which is how the retry and timeout paths are demonstrated without breaking anything
 real.
 
@@ -62,6 +71,8 @@ real.
 | `LOG_PRETTY` | `false` | Human-readable logs in development |
 | `API_KEY` | unset | When set, every `/api/v1` route requires `X-API-Key`. `/health` and `/docs` stay open |
 | `DEBUG_COURIER_ERRORS` | `false` | Appends the courier's own wording to error responses. Never enable in production |
+| `REQUEST_BODY_LIMIT` | `4mb` | Body-parser limit. A bulk request carries up to 100 orders, so this has to clear that with room |
+| `SHUTDOWN_TIMEOUT_MS` | `10000` | How long SIGTERM waits for in-flight work before the process exits anyway |
 | `DATABASE_URL` | — | **Required.** Postgres connection string |
 | `REDIS_URL` | — | **Required.** Redis connection string for BullMQ |
 | `BULK_MAX_ORDERS` | `100` | Largest accepted bulk request |
@@ -216,10 +227,11 @@ and one is generated.
 ## Testing
 
 ```bash
-npm test          # unit: mappers, status map, error classifier, decorators
-npm run test:int  # integration: real Express + Postgres + Redis, courier stubbed with nock
+npm test               # unit: mappers, status map, error classifier, decorators, HTTP pipeline
+npm run test:int       # integration: real Express + Postgres + Redis, courier stubbed with nock
 npm run test:all
-npm run lint && npm run typecheck
+npm run test:coverage  # both suites, coverage to coverage/
+npm run verify         # lint + format check + typecheck + unit tests, the same gate CI runs first
 ```
 
 Integration tests start Postgres and Redis with testcontainers by default. Locally, reusing the
@@ -230,6 +242,21 @@ docker compose up -d postgres redis
 docker compose exec postgres psql -U postgres -c 'CREATE DATABASE courier_test;'
 npm run test:int:local
 ```
+
+## Continuous integration
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs five jobs on every push and pull request:
+
+| Job | What it does |
+|---|---|
+| `static` | lint, `prettier --check`, typecheck, build, and an audit of runtime dependencies |
+| `generated` | regenerates `docs/openapi.json`, the Postman collection and the SQL migrations, and fails if any of them differ from what is committed |
+| `test` | the full suite against Postgres and Redis services, with a coverage summary on the run |
+| `e2e` | `docker compose up` with WireMock standing in for UrbaneBolt, then the Postman collection through newman |
+| `image` | builds the Docker image on every PR; publishes it to GHCR from `main` |
+
+If `generated` fails, run `npm run docs:generate && npm run db:generate` and commit the result.
+Generation is deterministic, so a diff there is always a real change.
 
 ## Adding a new courier
 
