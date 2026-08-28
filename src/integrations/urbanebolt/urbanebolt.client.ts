@@ -1,7 +1,4 @@
-import {
-  CourierOperation,
-  type CourierAudit,
-} from '../../components/couriers/index.js';
+import { CourierOperation, type CourierAudit } from '../../components/couriers/index.js';
 import { ErrorCode } from '../../libraries/errors/index.js';
 import type { UrbaneBoltConfig } from './urbanebolt.config.js';
 import {
@@ -59,8 +56,7 @@ export class UrbaneBoltClient {
 
     this.token = {
       value: parsed.data.access_token,
-      expiresAt:
-        Date.now() + (parsed.data.expires_in - TOKEN_SAFETY_MARGIN_SECONDS) * 1000,
+      expiresAt: Date.now() + (parsed.data.expires_in - TOKEN_SAFETY_MARGIN_SECONDS) * 1000,
     };
     return this.token.value;
   }

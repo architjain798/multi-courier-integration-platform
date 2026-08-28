@@ -22,8 +22,9 @@ describe('recognising failure inside a 200 response', () => {
   });
 
   it('recognises the differently shaped auth failure body', () => {
-    expect(isAuthFailureResponse(401, { detail: 'Authentication credentials were not provided.' }))
-      .toBe(true);
+    expect(
+      isAuthFailureResponse(401, { detail: 'Authentication credentials were not provided.' }),
+    ).toBe(true);
     expect(isAuthFailureResponse(200, { detail: 'token expired' })).toBe(true);
     expect(isAuthFailureResponse(200, { status: 'Success' })).toBe(false);
   });

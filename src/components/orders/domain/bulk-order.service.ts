@@ -20,10 +20,7 @@ import type { Logger } from '../../../libraries/logger/index.js';
 import type { BatchItemSeed, BulkBatchRepository } from '../data-access/bulk-batch.repository.js';
 import type { OrderRepository } from '../data-access/order.repository.js';
 import type { BulkBatchItemRow, BulkBatchRow, OrderRow } from '../data-access/schema.js';
-import {
-  createOrderSchema,
-  toNormalizedOrder,
-} from '../entry-points/api/orders.schemas.js';
+import { createOrderSchema, toNormalizedOrder } from '../entry-points/api/orders.schemas.js';
 import type { OrderService } from './order.service.js';
 
 export type BulkChunkJob = {
@@ -61,10 +58,9 @@ export class BulkOrderService {
 
   async submit(rawOrders: readonly unknown[]): Promise<BulkSubmission> {
     if (rawOrders.length > this.maxOrders) {
-      throw AppError.validation(
-        `A bulk request may contain at most ${this.maxOrders} orders`,
-        [{ field: 'orders', issue: 'too_many', received: rawOrders.length }],
-      );
+      throw AppError.validation(`A bulk request may contain at most ${this.maxOrders} orders`, [
+        { field: 'orders', issue: 'too_many', received: rawOrders.length },
+      ]);
     }
 
     const rejected: RejectedOrder[] = [];
@@ -132,7 +128,11 @@ export class BulkOrderService {
         });
         continue;
       }
-      seeds.push({ orderId: order.orderId, courierPartner: order.courierPartner, status: 'PENDING' });
+      seeds.push({
+        orderId: order.orderId,
+        courierPartner: order.courierPartner,
+        status: 'PENDING',
+      });
       queued.push(order);
     }
 

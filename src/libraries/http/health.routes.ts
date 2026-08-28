@@ -19,10 +19,7 @@ type CheckResult = {
   error?: string;
 };
 
-export function createHealthRouter(
-  checks: readonly DependencyCheck[],
-  version: string,
-): Router {
+export function createHealthRouter(checks: readonly DependencyCheck[], version: string): Router {
   const router = Router();
 
   // Liveness: answers as long as the process is running. Never touches a dependency, so a database

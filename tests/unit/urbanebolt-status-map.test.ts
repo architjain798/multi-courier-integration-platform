@@ -31,9 +31,7 @@ describe('parseUrbaneBoltTimestamp', () => {
   });
 
   it('handles a date with no time component', () => {
-    expect(parseUrbaneBoltTimestamp('02 Oct 2024')?.toISOString()).toBe(
-      '2024-10-01T18:30:00.000Z',
-    );
+    expect(parseUrbaneBoltTimestamp('02 Oct 2024')?.toISOString()).toBe('2024-10-01T18:30:00.000Z');
   });
 
   it('returns null rather than an Invalid Date for junk', () => {

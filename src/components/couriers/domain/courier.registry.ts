@@ -37,11 +37,9 @@ export class CourierRegistry {
   get(id: string): CourierAdapter {
     const adapter = this.adapters.get(id);
     if (adapter === undefined) {
-      throw new AppError(
-        ErrorCode.UNKNOWN_COURIER_PARTNER,
-        `Unsupported courier_partner "${id}"`,
-        { details: [{ supported: this.ids() }] },
-      );
+      throw new AppError(ErrorCode.UNKNOWN_COURIER_PARTNER, `Unsupported courier_partner "${id}"`, {
+        details: [{ supported: this.ids() }],
+      });
     }
     return adapter;
   }

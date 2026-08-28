@@ -7,7 +7,11 @@ export function createDocsRouter(document: object): Router {
   router.get('/docs/openapi.json', (_req, res) => {
     res.json(document);
   });
-  router.use('/docs', swaggerUi.serve, swaggerUi.setup(document, { customSiteTitle: 'Courier API' }));
+  router.use(
+    '/docs',
+    swaggerUi.serve,
+    swaggerUi.setup(document, { customSiteTitle: 'Courier API' }),
+  );
 
   return router;
 }
