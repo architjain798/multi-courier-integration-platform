@@ -6,7 +6,11 @@ import { createContainer, type Container } from './container.js';
 import { loadConfig } from './libraries/config/index.js';
 import { isAppError } from './libraries/errors/index.js';
 import { createLogger } from './libraries/logger/index.js';
-import { BULK_CREATE_QUEUE, superviseWorker, type SupervisedWorker } from './libraries/queue/index.js';
+import {
+  BULK_CREATE_QUEUE,
+  superviseWorker,
+  type SupervisedWorker,
+} from './libraries/queue/index.js';
 
 export function startBulkWorker(container: Container): SupervisedWorker {
   const processor = createBulkChunkProcessor(
@@ -49,10 +53,24 @@ function main(): void {
   );
 
   const shutdown = (signal: string): void => {
-    container.logger.info({ signal }, 'Stopping worker');
+    const timeoutMs = container.config.shutdownTimeoutMs;
+    container.logger.info({ signal, timeoutMs }, 'Stopping worker');
+
+    // close() drains whatever job is in flight, and a job is a courier call that can hang for as
+    // long as the courier lets it. The bound is what keeps a deploy from stalling on one bad call.
+    const forced = setTimeout(() => {
+      container.logger.error({ signal }, 'Worker did not stop in time, exiting anyway');
+      process.exit(1);
+    }, timeoutMs);
+
     void (async () => {
-      await worker.close();
-      await container.shutdown();
+      try {
+        await worker.close();
+        await container.shutdown();
+      } catch (error) {
+        container.errorHandler.handle(error, { source: 'shutdown' });
+      }
+      clearTimeout(forced);
       process.exit(0);
     })();
   };
@@ -67,6 +85,9 @@ function main(): void {
 
 // Only run standalone when this file is the process entrypoint; server.ts imports startBulkWorker
 // for the WORKER_INLINE path.
-if (process.argv[1]?.endsWith('worker.ts') === true || process.argv[1]?.endsWith('worker.js') === true) {
+if (
+  process.argv[1]?.endsWith('worker.ts') === true ||
+  process.argv[1]?.endsWith('worker.js') === true
+) {
   main();
 }

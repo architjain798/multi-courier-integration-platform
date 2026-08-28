@@ -60,12 +60,26 @@ function installProcessHandlers(httpServer: Server): void {
       return;
     }
     shuttingDown = true;
-    logger.info({ signal }, 'Shutting down');
+    logger.info({ signal, timeoutMs: config.shutdownTimeoutMs }, 'Shutting down');
 
+    // close() waits for every open connection, and a keep-alive socket held by a load balancer
+    // never closes on its own. Unbounded, the container sits there until the orchestrator SIGKILLs
+    // it, which drops in-flight requests rather than draining them.
+    const forced = setTimeout(() => {
+      logger.error({ signal }, 'Shutdown did not finish in time, exiting anyway');
+      process.exit(1);
+    }, config.shutdownTimeoutMs);
+
+    httpServer.closeIdleConnections();
     httpServer.close(() => {
       void (async () => {
-        await inlineWorker?.close();
-        await container.shutdown();
+        try {
+          await inlineWorker?.close();
+          await container.shutdown();
+        } catch (error) {
+          errorHandler.handle(error, { source: 'shutdown' });
+        }
+        clearTimeout(forced);
         process.exit(0);
       })();
     });
