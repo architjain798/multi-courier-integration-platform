@@ -1,0 +1,20 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/v1/services/manifest/",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[0].orderNumber"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"],
+    "body": "{\"status\":\"Success\",\"successResponse\":[{{#each (jsonPath request.body '$[?(@.consPincode != 999999)]')}}{{#if @index}},{{/if}}{\"orderNumber\":\"{{this.orderNumber}}\",\"awbNumber\":\"{{randomValue length=12 type='NUMERIC'}}\",\"routeCode\":\"GGN/DLHH\",\"shippingLabel\":\"http://localhost:8080/api/v1/services/print-label/?key=offline\",\"customerCode\":\"UEBCUS0008\"}{{/each}}],\"errorResponse\":[{{#each (jsonPath request.body '$[?(@.consPincode == 999999)]')}}{{#if @index}},{{/if}}{\"orderNumber\":\"{{this.orderNumber}}\",\"customerCode\":\"UEBCUS0008\",\"status\":\"Failed\",\"message\":\"Consignee Pincode {{this.consPincode}} is not serviceable\"}{{/each}}]}"
+  }
+}
