@@ -1,0 +1,1298 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Multi-Courier Integration Platform",
+    "description": "Courier-agnostic shipping API. Callers pass a courier_partner and a normalized payload; the platform maps it to whichever courier is selected."
+  },
+  "servers": [
+    {
+      "url": "{baseUrl}",
+      "variables": {
+        "baseUrl": {
+          "default": "http://localhost:3000",
+          "description": "Where this API is reachable"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    },
+    "schemas": {
+      "CreateOrderRequest": {
+        "type": "object",
+        "properties": {
+          "courier_partner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "order_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "payment_mode": {
+            "type": "string",
+            "enum": [
+              "PREPAID",
+              "COD"
+            ]
+          },
+          "service_level": {
+            "type": "string",
+            "enum": [
+              "SAME_DAY",
+              "NEXT_DAY",
+              "STANDARD"
+            ]
+          },
+          "collectable_amount": {
+            "type": "number",
+            "minimum": 0,
+            "default": 0
+          },
+          "declared_value": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "invoice": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "date": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "number",
+              "date",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          "pickup": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "return_address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "package": {
+            "$ref": "#/components/schemas/Parcel"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            },
+            "minItems": 1,
+            "maxItems": 50
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "courier_partner",
+          "order_id",
+          "payment_mode",
+          "service_level",
+          "declared_value",
+          "invoice",
+          "pickup",
+          "delivery",
+          "package",
+          "items"
+        ],
+        "additionalProperties": false,
+        "example": {
+          "courier_partner": "urbanebolt",
+          "order_id": "ORD-1001",
+          "payment_mode": "COD",
+          "service_level": "SAME_DAY",
+          "collectable_amount": 1499,
+          "declared_value": 1499,
+          "invoice": {
+            "number": "INV-1",
+            "date": "2026-08-27",
+            "value": 1499
+          },
+          "pickup": {
+            "name": "Warehouse",
+            "phone": "9425018023",
+            "line1": "Plot 137 Sector-I",
+            "city": "Gurgaon",
+            "state": "Haryana",
+            "pincode": "122017",
+            "country": "INDIA",
+            "type": "SELLER"
+          },
+          "delivery": {
+            "name": "Priya Sharma",
+            "phone": "8320226438",
+            "line1": "26 Om Nagar",
+            "city": "Gurgaon",
+            "state": "Haryana",
+            "pincode": "122001",
+            "country": "INDIA",
+            "type": "HOME"
+          },
+          "package": {
+            "weight_kg": 1.1,
+            "length_cm": 12,
+            "breadth_cm": 10,
+            "height_cm": 10,
+            "pieces": 1
+          },
+          "items": [
+            {
+              "description": "Paperback books",
+              "quantity": 1
+            }
+          ]
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "phone": {
+            "type": "string",
+            "pattern": "^\\+?[\\d\\s-]{8,16}$"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "line1": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 250
+          },
+          "line2": {
+            "type": "string",
+            "maxLength": 250
+          },
+          "city": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "state": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "pincode": {
+            "type": "string",
+            "pattern": "^\\d{6}$"
+          },
+          "country": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "default": "India"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "HOME",
+              "OFFICE",
+              "SELLER",
+              "WAREHOUSE"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "phone",
+          "line1",
+          "city",
+          "state",
+          "pincode",
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "Parcel": {
+        "type": "object",
+        "properties": {
+          "weight_kg": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1000
+          },
+          "length_cm": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 500
+          },
+          "breadth_cm": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 500
+          },
+          "height_cm": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 500
+          },
+          "pieces": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 100,
+            "default": 1
+          }
+        },
+        "required": [
+          "weight_kg",
+          "length_cm",
+          "breadth_cm",
+          "height_cm"
+        ],
+        "additionalProperties": false
+      },
+      "OrderItem": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "quantity": {
+            "type": "integer",
+            "exclusiveMinimum": 0
+          },
+          "sku": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "hsn": {
+            "type": "string",
+            "maxLength": 20
+          }
+        },
+        "required": [
+          "description",
+          "quantity"
+        ],
+        "additionalProperties": false
+      },
+      "BulkCreateOrdersRequest": {
+        "type": "object",
+        "properties": {
+          "orders": {
+            "type": "array",
+            "items": {},
+            "minItems": 1
+          }
+        },
+        "required": [
+          "orders"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/api/v1/couriers": {
+      "get": {
+        "tags": [
+          "Couriers"
+        ],
+        "summary": "Supported couriers and their capabilities",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registered couriers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/serviceability": {
+      "get": {
+        "tags": [
+          "Couriers"
+        ],
+        "summary": "Check whether a courier serves the given pincodes",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "example": "urbanebolt"
+            },
+            "required": true,
+            "name": "courier_partner",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "example": "122001,122017"
+            },
+            "required": true,
+            "name": "pincodes",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Serviceability per pincode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed or the courier_partner is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Create a shipment with any courier",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Idempotent replay of an order_id already submitted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Shipment created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed or the courier_partner is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order or batch not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Shipment is in a state that forbids the operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The courier rejected the shipment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "The courier is unavailable or rejected our credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "The courier timed out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "List orders, optionally filtered by status or courier",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "PENDING",
+                    "CREATED",
+                    "PICKED_UP",
+                    "IN_TRANSIT",
+                    "OUT_FOR_DELIVERY",
+                    "DELIVERED",
+                    "UNDELIVERED",
+                    "RTO",
+                    "CANCELLED",
+                    "FAILED",
+                    "RECONCILIATION_REQUIRED",
+                    "UNKNOWN"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "PENDING",
+                      "CREATED",
+                      "PICKED_UP",
+                      "IN_TRANSIT",
+                      "OUT_FOR_DELIVERY",
+                      "DELIVERED",
+                      "UNDELIVERED",
+                      "RTO",
+                      "CANCELLED",
+                      "FAILED",
+                      "RECONCILIATION_REQUIRED",
+                      "UNKNOWN"
+                    ]
+                  }
+                }
+              ],
+              "example": "FAILED"
+            },
+            "required": false,
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "example": "urbanebolt"
+            },
+            "required": false,
+            "name": "courier_partner",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 200,
+              "default": 50
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "default": 0
+            },
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/bulk": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Submit up to 100 orders for background processing",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "orders": [
+                  {
+                    "courier_partner": "urbanebolt",
+                    "order_id": "ORD-1001",
+                    "payment_mode": "COD",
+                    "service_level": "SAME_DAY",
+                    "collectable_amount": 1499,
+                    "declared_value": 1499,
+                    "invoice": {
+                      "number": "INV-1",
+                      "date": "2026-08-27",
+                      "value": 1499
+                    },
+                    "pickup": {
+                      "name": "Warehouse",
+                      "phone": "9425018023",
+                      "line1": "Plot 137 Sector-I",
+                      "city": "Gurgaon",
+                      "state": "Haryana",
+                      "pincode": "122017",
+                      "country": "INDIA",
+                      "type": "SELLER"
+                    },
+                    "delivery": {
+                      "name": "Priya Sharma",
+                      "phone": "8320226438",
+                      "line1": "26 Om Nagar",
+                      "city": "Gurgaon",
+                      "state": "Haryana",
+                      "pincode": "122001",
+                      "country": "INDIA",
+                      "type": "HOME"
+                    },
+                    "package": {
+                      "weight_kg": 1.1,
+                      "length_cm": 12,
+                      "breadth_cm": 10,
+                      "height_cm": 10,
+                      "pieces": 1
+                    },
+                    "items": [
+                      {
+                        "description": "Paperback books",
+                        "quantity": 1
+                      }
+                    ]
+                  },
+                  {
+                    "courier_partner": "urbanebolt",
+                    "order_id": "ORD-1002",
+                    "payment_mode": "COD",
+                    "service_level": "SAME_DAY",
+                    "collectable_amount": 1499,
+                    "declared_value": 1499,
+                    "invoice": {
+                      "number": "INV-1",
+                      "date": "2026-08-27",
+                      "value": 1499
+                    },
+                    "pickup": {
+                      "name": "Warehouse",
+                      "phone": "9425018023",
+                      "line1": "Plot 137 Sector-I",
+                      "city": "Gurgaon",
+                      "state": "Haryana",
+                      "pincode": "122017",
+                      "country": "INDIA",
+                      "type": "SELLER"
+                    },
+                    "delivery": {
+                      "name": "Priya Sharma",
+                      "phone": "8320226438",
+                      "line1": "26 Om Nagar",
+                      "city": "Gurgaon",
+                      "state": "Haryana",
+                      "pincode": "999999",
+                      "country": "INDIA",
+                      "type": "HOME"
+                    },
+                    "package": {
+                      "weight_kg": 1.1,
+                      "length_cm": 12,
+                      "breadth_cm": 10,
+                      "height_cm": 10,
+                      "pieces": 1
+                    },
+                    "items": [
+                      {
+                        "description": "Paperback books",
+                        "quantity": 1
+                      }
+                    ]
+                  }
+                ]
+              },
+              "schema": {
+                "$ref": "#/components/schemas/BulkCreateOrdersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch accepted; poll status_url for per-order outcomes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The batch envelope itself was invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{orderId}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Read a single order",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "ORD-1001"
+            },
+            "required": true,
+            "name": "orderId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order or batch not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{orderId}/track": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Track a shipment and append any new courier scans",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "ORD-1001"
+            },
+            "required": true,
+            "name": "orderId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current status plus append-only history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order or batch not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Shipment is in a state that forbids the operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{orderId}/cancel": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Cancel a shipment before pickup",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "ORD-1001"
+            },
+            "required": true,
+            "name": "orderId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cancelled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Shipment is in a state that forbids the operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{orderId}/retry": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Re-drive a failed order through the same pipeline",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "ORD-1001"
+            },
+            "required": true,
+            "name": "orderId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retried",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Shipment is in a state that forbids the operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/batches/{batchId}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Per-order outcomes for a bulk submission",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "3f8f5b1a-1f2e-4d6b-9c0a-8b3c2d1e0f44"
+            },
+            "required": true,
+            "name": "batchId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Batch status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order or batch not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Liveness probe - answers whenever the process is up",
+        "responses": {
+          "200": {
+            "description": "Process is alive",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Readiness probe - checks Postgres, Redis and the courier registry",
+        "responses": {
+          "200": {
+            "description": "Every dependency is reachable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "At least one dependency is down; the body names which",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}
