@@ -1,0 +1,359 @@
+{
+  "info": {
+    "_postman_id": "59abb4ea-8b36-401f-85aa-77f2b776fb25",
+    "name": "UrbaneBolt Customer API_Documents_UAT",
+    "description": "<html><head></head><body><p>The collection of customer facing APIs is here to integrate UrbaneBolt Logistics services.</p>\n<p>Feel free to reach us on below mail id for integration related support.</p>\n<p><a href=\"mailto:support@urbanebolt.com\">support@urbanebolt.com</a></p>\n</body></html>",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+    "toc": [],
+    "owner": "19172174",
+    "collectionId": "59abb4ea-8b36-401f-85aa-77f2b776fb25",
+    "publishedId": "2sAYHzFhxb",
+    "public": true,
+    "customColor": { "top-bar": "FFFFFF", "right-sidebar": "303030", "highlight": "FF6C37" },
+    "publishDate": "2024-12-15T20:01:06.000Z"
+  },
+  "item": [
+    {
+      "name": "getToken API",
+      "id": "c0876508-4183-4a58-9d8d-3135bd857b8f",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Cookie", "value": "csrftoken=SuZfjeJQJQNlDaNxRJgaMqylRWlqogsL" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\":\"info@urbanebolt.com\", \"password\":\"EKIcygsLVV5RCtPZ\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "https://uat.urbanebolt.in/api/v1/auth/getToken/",
+        "description": "<p>Call this API to get token which will be used to call other APIs. Kindly use your API credentials provided by UrbaneBolt integration team.</p>\n",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "auth", "getToken", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "c0876508-4183-4a58-9d8d-3135bd857b8f"
+    },
+    {
+      "name": "Pincode API",
+      "id": "9ab1ac01-84b6-40fa-a858-d5247939f731",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "csrftoken=tK8oyHpfF2FcI2lS0F2pqVNmHx9YV0j8; sessionid=21bjwngg0x9s90ujff1cq4dpls3ufc2t"
+          },
+          { "key": "Content-Type", "value": "application/json", "type": "text" },
+          {
+            "key": "Authorization",
+            "value": "Bearer zV2QVrOGIoki20NY4zldf7mFHHhLOa",
+            "type": "text"
+          }
+        ],
+        "url": "https://uat.urbanebolt.in/api/v1/location/pincodes/?pincodes=122001,122017",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "location", "pincodes", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [{ "key": "pincodes", "value": "122001,122017" }],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "9ab1ac01-84b6-40fa-a858-d5247939f731"
+    },
+    {
+      "name": "Pincode Bulk API",
+      "id": "1e6e1a0d-40b9-4bfc-a84c-9fd8d5c96bc7",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "csrftoken=tK8oyHpfF2FcI2lS0F2pqVNmHx9YV0j8; sessionid=21bjwngg0x9s90ujff1cq4dpls3ufc2t"
+          }
+        ],
+        "url": "https://uat.urbanebolt.in/api/v1/location/pincodes/?type=ex",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "location", "pincodes", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [{ "key": "type", "value": "ex" }],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "1e6e1a0d-40b9-4bfc-a84c-9fd8d5c96bc7"
+    },
+    {
+      "name": "Manifest API",
+      "id": "0be7075f-750b-4433-a616-71888ec1c00c",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer 9b9YVra7ofxyTRWAQnSyJkyTFmwQMo" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n    {\n        \"customerCode\": \"UEBCUS0008\",\n        \"orderNumber\": \"UATTESTUEBCUS0018\",\n        \"declaredValue\": 100,\n        \"itemDescription\": \"BOOKS\",\n        \"collectableValue\": 1,\n        \"height\": 10,\n        \"length\": 12,\n        \"pieces\": 1,\n        \"weight\": 1.1,\n        \"breadth\": 10,\n        \"serviceType\": \"SDD\",\n        \"payMode\": \"COD\",\n        \"rtnCity\": \"Govindpura\",\n        \"rtnName\": \"Rohit Athaley\",\n        \"consCity\": \"Surat\",\n        \"consName\": \"Satyam Convent School\",\n        \"rtnEmail\": \"bhopal@mbdgroup.com\",\n        \"rtnState\": \"BHOPAL\",\n        \"shprCity\": \"Govindpura\",\n        \"shprName\": \"Rohit Athaley\",\n        \"consEmail\": \"TEST2@AIL.COM\",\n        \"consState\": \"GUJRAT\",\n        \"rtnMobile\": 9425018023,\n        \"shprEmail\": \"bhopal@mbdgroup.com\",\n        \"shprState\": \"BHOPAL\",\n        \"consMobile\": 8320226438,\n        \"rtnAddress\": \"HOLY FAITH INTERNATIONAL P LTD,Plot No.l37-138-139 Sector-I Spl.Industrial Area Govindpura\",\n        \"rtnAddressType\":\"Seller\",\n        \"rtnCountry\": \"INDIA\",\n        \"rtnPincode\": 122017,\n        \"shprMobile\": 9425018023,\n        \"consAddress\": \"Plot No. 26-27, Om Nagar Society,Sumbhal, Surat (Deepak Sir)\",\n        \"consAddressType\":\"Home\",\n        \"consCountry\": \"INDIA\",\n        \"consPincode\": 122001,\n        \"invoiceNumber\": \"INV0002\",\n        \"invoiceDate\": \"2024-10-02\",\n        \"shprAddress\": \"HOLY FAITH INTERNATIONAL P LTD,Plot No.l37-138-139 Sector-I Spl.Industrial Area Govindpura\",\n        \"shprAddressType\":\"Seller\",\n        \"shprCountry\": \"INDIA\",\n        \"shprPincode\": 122001,\n        \"invoiceValue\": 10,\n        \"itemQuantity\": 1\n    }\n]",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "https://uat.urbanebolt.in/api/v1/services/manifest/",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "manifest", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "0be7075f-750b-4433-a616-71888ec1c00c"
+    },
+    {
+      "name": "Print Label API",
+      "id": "813beadc-07a1-4d51-9abe-117568a41ae8",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" },
+          { "key": "Authorization", "value": "peuupe1FQfxkPDbKuQQtUE4ZJHrFEh", "type": "text" }
+        ],
+        "url": "https://uat.urbanebolt.in/api/v1/services/label/?awbs=200000001170",
+        "description": "<p>Get Shipping label data to create own label which needs to past over shipments box.</p>\n",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "label", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [{ "key": "awbs", "value": "200000001170" }],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "813beadc-07a1-4d51-9abe-117568a41ae8"
+    },
+    {
+      "name": "Tracking API",
+      "id": "0429e5fd-faa2-4b40-a6a6-a30a983ab56a",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer dFjrZIVbapXpiX6CAGcfRhvqBkCRTO",
+            "type": "text"
+          },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "url": "https://uat.urbanebolt.in/api/v1/services/tracking-pub/?awb=200000001170",
+        "description": "<p>Tracking API will give shipment details anlong with shipment travel history.</p>\n",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "tracking-pub", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [{ "key": "awb", "value": "200000001170" }],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "0429e5fd-faa2-4b40-a6a6-a30a983ab56a"
+    },
+    {
+      "name": "Cancellation API",
+      "id": "3d3f55e2-33bf-4c0e-ad14-fc98ef419dc2",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer DgpNjZx73HP17chQK7dI2AawzykBcS" },
+          { "key": "Content-Type", "value": "application/json" },
+          {
+            "key": "Cookie",
+            "value": "csrftoken=ryXzwTVfW5ClrjcU6lW2w22a9rCVeqUR; sessionid=21bjwngg0x9s90ujff1cq4dpls3ufc2t"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"awbs\": \"200000001170\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "https://uat.urbanebolt.in/api/v1/services/cancel/",
+        "description": "<p>Cancellation API can be used to cancell a shipment before pickup.</p>\n",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "cancel", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "3d3f55e2-33bf-4c0e-ad14-fc98ef419dc2"
+    },
+    {
+      "name": "NDR API - RTO",
+      "id": "584e0ed9-2ed4-4b45-a07f-7b707deeaa36",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer XcTEdVD0OPKVC6a4Ys1PK54P2K7upJ" },
+          { "key": "Content-Type", "value": "application/json" },
+          {
+            "key": "Cookie",
+            "value": "csrftoken=xus0GDLD7x6u4dFirzVwiAt9e19C3BYs; sessionid=tvvgvsxgv8bdwec18btzr82spb48ch3k"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"awbs\":\"200000001154\"}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "https://uat.urbanebolt.in/api/v1/services/ndr/?type=rtoLock",
+        "description": "<p>NDR API can be used for making shipment RTO or Re-attempt if shipment is in Undelivered status.</p>\n",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "ndr", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [{ "key": "type", "value": "rtoLock" }],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "584e0ed9-2ed4-4b45-a07f-7b707deeaa36"
+    },
+    {
+      "name": "PayMode Change API",
+      "id": "0da4501d-36bd-427e-a388-ee8cefbd984b",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer DgpNjZx73HP17chQK7dI2AawzykBcS" },
+          { "key": "Content-Type", "value": "application/json" },
+          {
+            "key": "Cookie",
+            "value": "csrftoken=KSQPbB1UXgqZnyf08EotHJRuRnkgx6cX; sessionid=lekag98p79y2yk2typrp8y8sdtyxqrgd"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"awbs\":\"100000000071,100000000072\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "https://uat.urbanebolt.in/api/v1/services/update-paymode/",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "update-paymode", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "0da4501d-36bd-427e-a388-ee8cefbd984b"
+    },
+    {
+      "name": "ePOD API",
+      "id": "e852a811-c256-4d7f-bb96-71c72caf234c",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer g8XPlQpZdd08uSIasEA2XIq1x37aH2" },
+          {
+            "key": "Cookie",
+            "value": "csrftoken=KSQPbB1UXgqZnyf08EotHJRuRnkgx6cX; sessionid=lekag98p79y2yk2typrp8y8sdtyxqrgd"
+          }
+        ],
+        "url": "https://uat.urbanebolt.in/api/v1/services/epod/?awbs=200000002626",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "epod", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [{ "key": "awbs", "value": "200000002626" }],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "e852a811-c256-4d7f-bb96-71c72caf234c"
+    },
+    {
+      "name": "NDR API - RAD",
+      "id": "7ab2fa14-63e9-4017-9d40-6a856b6a0a25",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "auth": { "type": "noauth", "isInherited": false },
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer oRNuIrk2k503qmtOx6aSDrJqmcsd0W" },
+          { "key": "Content-Type", "value": "application/json" },
+          {
+            "key": "Cookie",
+            "value": "csrftoken=H9qioueszXH5UMvBKHl3IRJWWv8EKkOR; sessionid=zhv1k0ucvct6ubhxwcuynebscmieemba"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n    {\n        \"awb\": \"200000001154\",\n        \"name\": \"Consinge NAme\",\n        \"address\": \"Okhla Industrial Area phase-III\",\n        \"city\": \"Delhi\",\n        \"state\": \"Delhi\",\n        \"pincode\": \"122001\",\n        \"mobile\":\"9711908116\",\n        \"email\":\"aks@urbanebolt.com\"\n    }\n]",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "https://uat.urbanebolt.in/api/v1/services/ndr/?type=reAttempt",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "ndr", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [{ "key": "type", "value": "reAttempt" }],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "7ab2fa14-63e9-4017-9d40-6a856b6a0a25"
+    },
+    {
+      "name": "Manifest API_global",
+      "id": "3e7d2d55-74c8-482a-a392-e15a248739a2",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer jBQtwto85RaDtufpjTHh2FVh5Fjfkw" },
+          { "key": "Content-Type", "value": "application/json" },
+          {
+            "key": "Cookie",
+            "value": "csrftoken=tK8oyHpfF2FcI2lS0F2pqVNmHx9YV0j8; sessionid=21bjwngg0x9s90ujff1cq4dpls3ufc2t"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n    {\n        \"isDG\": false,\n        \"rtnId\": \"Seller123\",\n        \"height\": 10,\n        \"length\": 10,\n        \"pieces\": 1,\n        \"rtnLat\": 0,\n        \"rtnLng\": 0,\n        \"shprId\": \"Seller123\",\n        \"weight\": 0.5,\n        \"breadth\": 10,\n        \"consLat\": 0,\n        \"consLng\": 0,\n        \"itemHsn\": \"441122\",\n        \"itemSku\": \"441122\",\n        \"payMode\": \"PPD\",\n        \"rtnCity\": \"Test city\",\n        \"rtnName\": \"Test name\",\n        \"shprLat\": 0,\n        \"shprLng\": 0,\n        \"consCity\": \"Test City\",\n        \"consName\": \"Test Name\",\n        \"rtnEmail\": \"test@gmail.com\",\n        \"rtnState\": \"Test State\",\n        \"shprCity\": \"Test city\",\n        \"shprName\": \"Test name\",\n        \"taxCGSTN\": \"\",\n        \"taxIGSTN\": \"\",\n        \"taxSGSTN\": \"\",\n        \"totalGST\": \"\",\n        \"totalTax\": \"10\",\n        \"consEmail\": \"test@gmail.com\",\n        \"consState\": \"Test State\",\n        \"delSecure\": false,\n        \"isReverse\": false,\n        \"isSurface\": false,\n        \"rtnMobile\": 1234567890,\n        \"sellerERN\": \"Test1234\",\n        \"sellerGST\": \"Test12345678\",\n        \"shprEmail\": \"test@gmail.com\",\n        \"shprState\": \"Test State\",\n        \"volWeight\": 0.5,\n        \"consMobile\": 1234567890,\n        \"rtnAddress\": \"Test Shipper address\",\n        \"rtnCountry\": \"India\",\n        \"rtnPincode\": 122017,\n        \"shprMobile\": 1234567890,\n        \"consAddress\": \"Test Consignee Name\",\n        \"consCountry\": \"India\",\n        \"consPincode\": 122001,\n        \"delPriority\": false,\n        \"invoiceDate\": \"2023-08-08\",\n        \"isEssential\": false,\n        \"orderNumber\": \"TestOrder123\",\n        \"serviceType\": \"NDD\",\n        \"shprAddress\": \"Test Shipper address\",\n        \"shprCountry\": \"India\",\n        \"shprPincode\": 122017,\n        \"invoiceValue\": 10,\n        \"itemQuantity\": 1,\n        \"declaredValue\": 10,\n        \"invoiceNumber\": \"123456\",\n        \"rtnAddressType\": \"Seller\",\n        \"consAddressType\": \"Home\",\n        \"itemDescription\": \"Test Item\",\n        \"shprAddressType\": \"Seller\",\n        \"collectableValue\": 0\n    }\n]",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "https://uat.urbanebolt.in/api/v1/services/global-manifest/",
+        "urlObject": {
+          "protocol": "https",
+          "path": ["api", "v1", "services", "global-manifest", ""],
+          "host": ["uat", "urbanebolt", "in"],
+          "query": [],
+          "variable": []
+        }
+      },
+      "response": [],
+      "_postman_id": "3e7d2d55-74c8-482a-a392-e15a248739a2"
+    }
+  ]
+}
