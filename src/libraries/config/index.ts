@@ -15,6 +15,8 @@ const envSchema = z.object({
   LOG_PRETTY: booleanFromEnv('false'),
   API_KEY: z.string().min(1).optional(),
   DEBUG_COURIER_ERRORS: booleanFromEnv('false'),
+  REQUEST_BODY_LIMIT: z.string().min(1).default('4mb'),
+  SHUTDOWN_TIMEOUT_MS: z.coerce.number().int().positive().default(10_000),
 
   DATABASE_URL: z.string().min(1),
   REDIS_URL: z.string().min(1),
@@ -36,6 +38,8 @@ export type AppConfig = {
   logPretty: boolean;
   apiKey: string | undefined;
   debugCourierErrors: boolean;
+  requestBodyLimit: string;
+  shutdownTimeoutMs: number;
   databaseUrl: string;
   redisUrl: string;
   bulk: {
@@ -72,6 +76,8 @@ export function loadConfig(source: NodeJS.ProcessEnv = process.env): AppConfig {
     logPretty: env.LOG_PRETTY,
     apiKey: env.API_KEY,
     debugCourierErrors: env.DEBUG_COURIER_ERRORS,
+    requestBodyLimit: env.REQUEST_BODY_LIMIT,
+    shutdownTimeoutMs: env.SHUTDOWN_TIMEOUT_MS,
     databaseUrl: env.DATABASE_URL,
     redisUrl: env.REDIS_URL,
     bulk: {
