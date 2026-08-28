@@ -8,6 +8,7 @@ export default defineConfig({
     testTimeout: 20_000,
     hookTimeout: 120_000,
     coverage: {
+      reporter: ['text', 'json-summary', 'html'],
       include: ['src/**'],
       exclude: ['src/**/*.types.ts', 'src/db/migrations/**'],
     },
