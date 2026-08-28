@@ -339,7 +339,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -395,7 +398,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -407,14 +413,17 @@
             }
           },
           "400": {
-            "description": "Validation failed or the courier_partner is unknown",
+            "description": "Validation failed, the body is not JSON, or the courier_partner is unknown",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -457,7 +466,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -476,7 +488,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -488,14 +503,17 @@
             }
           },
           "400": {
-            "description": "Validation failed or the courier_partner is unknown",
+            "description": "Validation failed, the body is not JSON, or the courier_partner is unknown",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -514,7 +532,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -533,7 +554,32 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "additionalProperties": {}
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The request body is larger than the configured limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -552,7 +598,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -571,7 +620,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -590,7 +642,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -658,6 +713,7 @@
               "example": "FAILED"
             },
             "required": false,
+            "example": "FAILED",
             "name": "status",
             "in": "query"
           },
@@ -705,7 +761,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -844,7 +903,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -863,7 +925,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -908,7 +973,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -927,7 +995,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -972,7 +1043,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -991,7 +1065,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -1010,7 +1087,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -1055,7 +1135,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -1074,7 +1157,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -1119,7 +1205,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -1138,7 +1227,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -1183,7 +1275,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -1202,7 +1297,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        false
+                      ]
                     }
                   },
                   "required": [
@@ -1231,7 +1329,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -1260,7 +1361,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [
@@ -1279,7 +1383,10 @@
                   "type": "object",
                   "properties": {
                     "success": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
                     }
                   },
                   "required": [

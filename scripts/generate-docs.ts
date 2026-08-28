@@ -22,6 +22,12 @@ const captureIds = {
       "  pm.expect(pm.response.json()).to.have.property('success');",
       '});',
       '',
+      // Without this the run is only a smoke test of connectivity: the error envelope is itself a
+      // valid envelope, so a route answering 500 would pass the assertion above.
+      "pm.test('does not fail on the server side', function () {",
+      '  pm.expect(pm.response.code).to.be.below(500);',
+      '});',
+      '',
       // `data` is already taken in the Postman sandbox, and redeclaring it fails the whole script.
       'const payload = pm.response.json().data;',
       'if (payload && payload.order_id) {',
@@ -36,7 +42,13 @@ const captureIds = {
 
 const chained: Record<string, string> = { orderId: '{{orderId}}', batchId: '{{batchId}}' };
 
+// The converter stamps a fresh uuid on the collection and on every item and example response, so
+// two runs over an unchanged schema differ by ~250 lines of pure noise. That hides real changes in
+// review and makes a CI staleness check impossible. Postman assigns its own ids on import.
+const generatedKeys = new Set(['id', '_postman_id']);
+
 const document = buildOpenApiDocument('1.0.0');
+const queryExamples = queryExamplesFrom(document);
 
 await mkdir('docs', { recursive: true });
 await mkdir('postman', { recursive: true });
@@ -72,43 +84,85 @@ function runnable(collection: unknown): unknown {
   if (!isRecord(collection)) {
     throw new Error('the converter returned something that is not a collection');
   }
+  return normalize({ ...collection, variable: variables, event: [captureIds] });
+}
+
+// One walk over the finished collection. It drops the generated ids, and rewrites the two kinds of
+// URL slot the converter fills in badly: path variables, which have to carry the chained values,
+// and query parameters, which it invents from the schema.
+function normalize(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map(normalize);
+  }
+  if (!isRecord(value)) {
+    return value;
+  }
+  return Object.fromEntries(
+    Object.entries(value)
+      .filter(([key]) => !generatedKeys.has(key))
+      .map(([key, entry]) => [key, key === 'url' ? normalizeUrl(entry) : normalize(entry)]),
+  );
+}
+
+function normalizeUrl(url: unknown): unknown {
+  const walked = normalize(url);
+  if (!isRecord(walked)) {
+    return walked;
+  }
   return {
-    ...collection,
-    variable: variables,
-    event: [captureIds],
-    item: mapItems(collection.item),
+    ...walked,
+    ...(Array.isArray(walked.variable)
+      ? { variable: walked.variable.filter(isNotBaseUrl).map(substitute(chained)) }
+      : {}),
+    ...(Array.isArray(walked.query) ? { query: walked.query.map(substitute(queryExamples)) } : {}),
   };
 }
 
-function mapItems(items: unknown): unknown {
-  if (!Array.isArray(items)) {
-    return items;
-  }
-  return items.map((entry: unknown) => {
-    if (!isRecord(entry)) {
-      return entry;
-    }
-    if ('item' in entry) {
-      return { ...entry, item: mapItems(entry.item) };
-    }
-    return { ...entry, request: mapRequest(entry.request) };
-  });
+function isNotBaseUrl(entry: unknown): boolean {
+  return !isRecord(entry) || entry.key !== 'baseUrl';
 }
 
-function mapRequest(request: unknown): unknown {
-  if (!isRecord(request) || !isRecord(request.url) || !Array.isArray(request.url.variable)) {
-    return request;
+function substitute(replacements: Record<string, string | undefined>) {
+  return (entry: unknown): unknown => {
+    if (!isRecord(entry) || typeof entry.key !== 'string') {
+      return entry;
+    }
+    const replacement = replacements[entry.key];
+    return replacement === undefined ? entry : { ...entry, value: replacement };
+  };
+}
+
+// The converter resolves a query parameter by inventing a value from its schema, and for an enum it
+// picks a member at random -- so the committed collection showed a different ?status= on every
+// regeneration, and a reviewer had no way to tell that from a real change. The document already
+// carries the example we want on the parameter; this is only copying it across.
+function queryExamplesFrom(document: unknown): Record<string, string | undefined> {
+  const examples: Record<string, string | undefined> = {};
+  if (!isRecord(document) || !isRecord(document.paths)) {
+    return examples;
   }
-  const variable = request.url.variable
-    .filter((entry: unknown) => !isRecord(entry) || entry.key !== 'baseUrl')
-    .map((entry: unknown) => {
-      if (!isRecord(entry) || typeof entry.key !== 'string') {
-        return entry;
+
+  for (const operations of Object.values(document.paths)) {
+    if (!isRecord(operations)) {
+      continue;
+    }
+    for (const operation of Object.values(operations)) {
+      if (!isRecord(operation) || !Array.isArray(operation.parameters)) {
+        continue;
       }
-      const replacement = chained[entry.key];
-      return replacement === undefined ? entry : { ...entry, value: replacement };
-    });
-  return { ...request, url: { ...request.url, variable } };
+      for (const parameter of operation.parameters) {
+        if (
+          isRecord(parameter) &&
+          parameter.in === 'query' &&
+          typeof parameter.name === 'string' &&
+          typeof parameter.example === 'string'
+        ) {
+          examples[parameter.name] = parameter.example;
+        }
+      }
+    }
+  }
+  return examples;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
