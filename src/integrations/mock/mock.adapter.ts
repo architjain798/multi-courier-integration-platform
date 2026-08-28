@@ -95,11 +95,10 @@ export class MockCourierAdapter implements CourierAdapter {
     const shipment = this.findByAwb(awb, audit);
 
     if (shipment.status === ShipmentStatus.CANCELLED) {
-      throw new CourierError(
-        ErrorCode.SHIPMENT_ALREADY_CANCELLED,
-        'Shipment already cancelled',
-        { courierPartner: this.id, audit },
-      );
+      throw new CourierError(ErrorCode.SHIPMENT_ALREADY_CANCELLED, 'Shipment already cancelled', {
+        courierPartner: this.id,
+        audit,
+      });
     }
 
     shipment.status = ShipmentStatus.CANCELLED;
@@ -190,11 +189,10 @@ export class MockCourierAdapter implements CourierAdapter {
         status: 200,
         body: { status: 'Failed', message: 'simulated validation failure' },
         error: (audit) =>
-          new CourierError(
-            ErrorCode.COURIER_VALIDATION_ERROR,
-            'Simulated validation failure',
-            { courierPartner: this.id, audit },
-          ),
+          new CourierError(ErrorCode.COURIER_VALIDATION_ERROR, 'Simulated validation failure', {
+            courierPartner: this.id,
+            audit,
+          }),
       };
     }
     if (forced === 'unavailable' || random) {

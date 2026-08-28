@@ -102,7 +102,11 @@ describe('POST /api/v1/orders/bulk', () => {
 
     const codes = response.body.data.rejected.map((item: { code: string }) => item.code);
     expect(codes).toEqual(
-      expect.arrayContaining(['VALIDATION_ERROR', 'DUPLICATE_IN_REQUEST', 'UNKNOWN_COURIER_PARTNER']),
+      expect.arrayContaining([
+        'VALIDATION_ERROR',
+        'DUPLICATE_IN_REQUEST',
+        'UNKNOWN_COURIER_PARTNER',
+      ]),
     );
 
     // Let the queued chunk finish before the suite moves on, so its courier call cannot land in
@@ -204,7 +208,9 @@ describe('POST /api/v1/orders/bulk', () => {
 
   it('falls back to one call per order for a courier without batch support', async () => {
     const stamp = `MOCK-${Date.now()}`;
-    const orders = Array.from({ length: 3 }, (_, index) => orderPayload(`${stamp}-${index}`, 'mock'));
+    const orders = Array.from({ length: 3 }, (_, index) =>
+      orderPayload(`${stamp}-${index}`, 'mock'),
+    );
 
     const submitted = await request(harness.app).post('/api/v1/orders/bulk').send({ orders });
     const batch = await waitForBatch(submitted.body.data.batch_id);

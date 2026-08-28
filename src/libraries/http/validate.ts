@@ -4,10 +4,7 @@ import { AppError, detailsFromZodError } from '../errors/index.js';
 export function parseBody<T>(schema: ZodType<T>, body: unknown): T {
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
-    throw AppError.validation(
-      'Request body failed validation',
-      detailsFromZodError(parsed.error),
-    );
+    throw AppError.validation('Request body failed validation', detailsFromZodError(parsed.error));
   }
   return parsed.data;
 }

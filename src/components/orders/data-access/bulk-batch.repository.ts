@@ -70,7 +70,11 @@ export class BulkBatchRepository {
   }
 
   async findById(batchId: string): Promise<{ batch: BulkBatchRow; items: BulkBatchItemRow[] }> {
-    const rows = await this.db.select().from(bulkBatches).where(eq(bulkBatches.id, batchId)).limit(1);
+    const rows = await this.db
+      .select()
+      .from(bulkBatches)
+      .where(eq(bulkBatches.id, batchId))
+      .limit(1);
     const batch = rows[0];
     if (batch === undefined) {
       throw new AppError(ErrorCode.BATCH_NOT_FOUND, `No batch with id "${batchId}"`);
@@ -85,11 +89,7 @@ export class BulkBatchRepository {
     return { batch, items };
   }
 
-  async recordOutcome(
-    batchId: string,
-    orderId: string,
-    outcome: BatchItemOutcome,
-  ): Promise<void> {
+  async recordOutcome(batchId: string, orderId: string, outcome: BatchItemOutcome): Promise<void> {
     await this.db
       .update(bulkBatchItems)
       .set({

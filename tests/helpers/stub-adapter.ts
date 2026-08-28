@@ -37,7 +37,9 @@ export class StubCourierAdapter implements CourierAdapter {
 
   constructor(private readonly script: (call: number) => 'ok' | CourierError) {}
 
-  createShipment(order: NormalizedOrder): Promise<CourierResult<{ orderId: string; awb: string; status: ShipmentStatus }>> {
+  createShipment(
+    order: NormalizedOrder,
+  ): Promise<CourierResult<{ orderId: string; awb: string; status: ShipmentStatus }>> {
     this.calls += 1;
     const outcome = this.script(this.calls);
     if (outcome !== 'ok') {

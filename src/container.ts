@@ -54,7 +54,10 @@ export type Container = {
   shutdown: () => Promise<void>;
 };
 
-export function createContainer(config: AppConfig, env: NodeJS.ProcessEnv = process.env): Container {
+export function createContainer(
+  config: AppConfig,
+  env: NodeJS.ProcessEnv = process.env,
+): Container {
   const logger = createLogger({ level: config.logLevel, pretty: config.logPretty });
   const errorHandler = new ErrorHandler(logger);
 

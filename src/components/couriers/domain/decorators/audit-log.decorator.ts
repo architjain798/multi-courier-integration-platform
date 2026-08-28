@@ -3,7 +3,11 @@ import { AppError, ErrorCode, isAppError } from '../../../../libraries/errors/in
 import type { Logger } from '../../../../libraries/logger/index.js';
 import type { CourierApiLogRepository } from '../../data-access/courier-api-log.repository.js';
 import { auditOf } from '../courier.errors.js';
-import type { BatchCreateOutcome, CourierAdapter, CourierCapabilities } from '../courier.interface.js';
+import type {
+  BatchCreateOutcome,
+  CourierAdapter,
+  CourierCapabilities,
+} from '../courier.interface.js';
 import type {
   CancellationOutcome,
   CourierAudit,

@@ -78,7 +78,11 @@ export const trackingEvents = pgTable(
     index('tracking_events_order_idx').on(table.orderId),
     // The courier returns its full scan list on every poll. This is what makes re-reading it
     // append-only instead of duplicating history.
-    unique('tracking_events_unique_scan').on(table.orderId, table.courierStatusCode, table.eventTime),
+    unique('tracking_events_unique_scan').on(
+      table.orderId,
+      table.courierStatusCode,
+      table.eventTime,
+    ),
   ],
 );
 

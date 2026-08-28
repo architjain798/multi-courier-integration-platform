@@ -2,7 +2,11 @@ import { setTimeout as sleep } from 'node:timers/promises';
 import { setAttempt } from '../../../../libraries/context/index.js';
 import { AppError, ErrorCode, isAppError } from '../../../../libraries/errors/index.js';
 import type { Logger } from '../../../../libraries/logger/index.js';
-import type { BatchCreateOutcome, CourierAdapter, CourierCapabilities } from '../courier.interface.js';
+import type {
+  BatchCreateOutcome,
+  CourierAdapter,
+  CourierCapabilities,
+} from '../courier.interface.js';
 import {
   CourierOperation,
   type CancellationOutcome,

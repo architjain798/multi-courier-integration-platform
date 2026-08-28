@@ -1,6 +1,10 @@
 import { AppError, ErrorCode } from '../../../../libraries/errors/index.js';
 import type { Logger } from '../../../../libraries/logger/index.js';
-import type { BatchCreateOutcome, CourierAdapter, CourierCapabilities } from '../courier.interface.js';
+import type {
+  BatchCreateOutcome,
+  CourierAdapter,
+  CourierCapabilities,
+} from '../courier.interface.js';
 import type {
   CancellationOutcome,
   CourierResult,
