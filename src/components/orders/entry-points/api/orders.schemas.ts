@@ -116,7 +116,10 @@ export const listOrdersQuerySchema = z.object({
   status: z
     .union([z.enum(SHIPMENT_STATUSES), z.array(z.enum(SHIPMENT_STATUSES))])
     .optional()
-    .openapi({ example: 'FAILED' }),
+    // The example is repeated at the parameter level because a generator handed an anyOf ignores
+    // the schema-level one and picks a random member of the first enum instead, which made the
+    // committed collection show a different ?status= on every regeneration.
+    .openapi({ example: 'FAILED', param: { example: 'FAILED' } }),
   courier_partner: z.string().min(1).optional().openapi({ example: 'urbanebolt' }),
   limit: z.coerce.number().int().positive().max(200).default(50),
   offset: z.coerce.number().int().nonnegative().default(0),

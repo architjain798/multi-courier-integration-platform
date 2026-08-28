@@ -1,7 +1,6 @@
 {
   "item": [
     {
-      "id": "f337622d-6292-4564-985a-6e9454856bc8",
       "name": "Couriers",
       "description": {
         "content": "",
@@ -9,7 +8,6 @@
       },
       "item": [
         {
-          "id": "f8415dea-6eca-4d4f-ab88-b0699c01c2a1",
           "name": "Supported couriers and their capabilities",
           "request": {
             "name": "Supported couriers and their capabilities",
@@ -53,7 +51,6 @@
           },
           "response": [
             {
-              "id": "5fba4baf-bde4-4043-9ea2-fdb94675b2b0",
               "name": "Registered couriers",
               "originalRequest": {
                 "url": {
@@ -66,14 +63,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -100,7 +90,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -111,7 +101,6 @@
           }
         },
         {
-          "id": "87c13039-fdfe-44c2-bc60-ac5f20186b02",
           "name": "Check whether a courier serves the given pincodes",
           "request": {
             "name": "Check whether a courier serves the given pincodes",
@@ -168,7 +157,6 @@
           },
           "response": [
             {
-              "id": "bdc18508-5a5e-4697-8353-b1ce8852febc",
               "name": "Serviceability per pincode",
               "originalRequest": {
                 "url": {
@@ -190,14 +178,7 @@
                       "value": "122001,122017"
                     }
                   ],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -224,13 +205,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "0505cf58-87ea-4230-83f2-a9305276009d",
-              "name": "Validation failed or the courier_partner is unknown",
+              "name": "Validation failed, the body is not JSON, or the courier_partner is unknown",
               "originalRequest": {
                 "url": {
                   "path": [
@@ -251,14 +231,7 @@
                       "value": "122001,122017"
                     }
                   ],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -299,7 +272,6 @@
       "event": []
     },
     {
-      "id": "ff453395-12a6-49df-8b6f-e320fff2a717",
       "name": "Orders",
       "description": {
         "content": "",
@@ -307,7 +279,6 @@
       },
       "item": [
         {
-          "id": "a6be311c-c067-417e-b580-1adc71af6fdb",
           "name": "Create a shipment with any courier",
           "request": {
             "name": "Create a shipment with any courier",
@@ -364,7 +335,6 @@
           },
           "response": [
             {
-              "id": "820af5d4-6378-484c-bd78-7304d915c68f",
               "name": "Idempotent replay of an order_id already submitted",
               "originalRequest": {
                 "url": {
@@ -377,14 +347,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -419,12 +382,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "8eedfba0-bccc-4eb7-93ea-e6b019979827",
               "name": "Shipment created",
               "originalRequest": {
                 "url": {
@@ -437,14 +399,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -479,13 +434,12 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "faf4b1dd-54f0-45ff-aa5c-2fa9cc3c58f3",
-              "name": "Validation failed or the courier_partner is unknown",
+              "name": "Validation failed, the body is not JSON, or the courier_partner is unknown",
               "originalRequest": {
                 "url": {
                   "path": [
@@ -497,14 +451,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -544,7 +491,6 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "bd45e8e9-5a25-4ecd-ad96-6cf5e93026b5",
               "name": "Order or batch not found",
               "originalRequest": {
                 "url": {
@@ -557,14 +503,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -604,7 +543,6 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1d292925-5a2a-447f-9b26-f8c224fa3bd3",
               "name": "Shipment is in a state that forbids the operation",
               "originalRequest": {
                 "url": {
@@ -617,14 +555,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -664,7 +595,58 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "4f902e51-d168-4050-9e65-d705b3820a3e",
+              "name": "The request body is larger than the configured limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"courier_partner\": \"urbanebolt\",\n  \"order_id\": \"ORD-1001\",\n  \"payment_mode\": \"COD\",\n  \"service_level\": \"SAME_DAY\",\n  \"collectable_amount\": 1499,\n  \"declared_value\": 1499,\n  \"invoice\": {\n    \"number\": \"INV-1\",\n    \"date\": \"2026-08-27\",\n    \"value\": 1499\n  },\n  \"pickup\": {\n    \"name\": \"Warehouse\",\n    \"phone\": \"9425018023\",\n    \"line1\": \"Plot 137 Sector-I\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122017\",\n    \"country\": \"INDIA\",\n    \"type\": \"SELLER\"\n  },\n  \"delivery\": {\n    \"name\": \"Priya Sharma\",\n    \"phone\": \"8320226438\",\n    \"line1\": \"26 Om Nagar\",\n    \"city\": \"Gurgaon\",\n    \"state\": \"Haryana\",\n    \"pincode\": \"122001\",\n    \"country\": \"INDIA\",\n    \"type\": \"HOME\"\n  },\n  \"package\": {\n    \"weight_kg\": 1.1,\n    \"length_cm\": 12,\n    \"breadth_cm\": 10,\n    \"height_cm\": 10,\n    \"pieces\": 1\n  },\n  \"items\": [\n    {\n      \"description\": \"Paperback books\",\n      \"quantity\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
               "name": "The courier rejected the shipment",
               "originalRequest": {
                 "url": {
@@ -677,14 +659,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -724,7 +699,6 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "e6981d19-7842-42cd-b9c4-c2dce5ecba5a",
               "name": "The courier is unavailable or rejected our credentials",
               "originalRequest": {
                 "url": {
@@ -737,14 +711,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -784,7 +751,6 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "99e05af3-3ca8-44c1-b468-16cefe641629",
               "name": "The courier timed out",
               "originalRequest": {
                 "url": {
@@ -797,14 +763,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -850,7 +809,6 @@
           }
         },
         {
-          "id": "0cf38a73-380a-48ac-8edf-b6b37fed4ece",
           "name": "List orders, optionally filtered by status or courier",
           "request": {
             "name": "List orders, optionally filtered by status or courier",
@@ -915,7 +873,6 @@
           },
           "response": [
             {
-              "id": "723a6c64-4362-4324-b40a-6ad5b87cb3a9",
               "name": "Matching orders",
               "originalRequest": {
                 "url": {
@@ -945,14 +902,7 @@
                       "value": "0"
                     }
                   ],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -979,7 +929,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -990,7 +940,6 @@
           }
         },
         {
-          "id": "4c0aea71-4a38-4ef3-b003-ce053a82359f",
           "name": "Submit up to 100 orders for background processing",
           "request": {
             "name": "Submit up to 100 orders for background processing",
@@ -1048,7 +997,6 @@
           },
           "response": [
             {
-              "id": "39bc7d7d-252a-4faa-8e1c-dacfa44ae0a8",
               "name": "Batch accepted; poll status_url for per-order outcomes",
               "originalRequest": {
                 "url": {
@@ -1062,14 +1010,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -1104,12 +1045,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "f1991eef-5966-48d0-b49f-032df5b54832",
               "name": "The batch envelope itself was invalid",
               "originalRequest": {
                 "url": {
@@ -1123,14 +1063,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -1165,7 +1098,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -1176,7 +1109,6 @@
           }
         },
         {
-          "id": "75bdcf82-79bc-4626-a180-904fdb9dff99",
           "name": "Read a single order",
           "request": {
             "name": "Read a single order",
@@ -1229,7 +1161,6 @@
           },
           "response": [
             {
-              "id": "d06f32aa-4211-4504-80d0-4ea4698adaa6",
               "name": "The order",
               "originalRequest": {
                 "url": {
@@ -1247,15 +1178,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1284,12 +1209,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "949db1c9-cd19-444b-88c3-88a77d81270f",
               "name": "Order or batch not found",
               "originalRequest": {
                 "url": {
@@ -1307,15 +1231,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1355,7 +1273,6 @@
           }
         },
         {
-          "id": "53346754-3d90-4a06-9e00-88f841a00e90",
           "name": "Track a shipment and append any new courier scans",
           "request": {
             "name": "Track a shipment and append any new courier scans",
@@ -1409,7 +1326,6 @@
           },
           "response": [
             {
-              "id": "de526fb6-e006-436c-afec-1e20049c374d",
               "name": "Current status plus append-only history",
               "originalRequest": {
                 "url": {
@@ -1428,15 +1344,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1465,12 +1375,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "bca23fa0-e877-428e-973e-183e463b82e2",
               "name": "Order or batch not found",
               "originalRequest": {
                 "url": {
@@ -1489,15 +1398,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1531,7 +1434,6 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "52a07d29-4825-4044-a05e-7d5c83078d18",
               "name": "Shipment is in a state that forbids the operation",
               "originalRequest": {
                 "url": {
@@ -1550,15 +1452,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1598,7 +1494,6 @@
           }
         },
         {
-          "id": "86a67bb2-69b9-4858-a94f-a590e6942678",
           "name": "Cancel a shipment before pickup",
           "request": {
             "name": "Cancel a shipment before pickup",
@@ -1652,7 +1547,6 @@
           },
           "response": [
             {
-              "id": "7c5f5eb0-b277-49af-b935-fff3e3cc53ff",
               "name": "Cancelled",
               "originalRequest": {
                 "url": {
@@ -1671,15 +1565,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1708,12 +1596,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "100132d7-9956-41f0-a808-cda52b1d6bbf",
               "name": "Shipment is in a state that forbids the operation",
               "originalRequest": {
                 "url": {
@@ -1732,15 +1619,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1780,7 +1661,6 @@
           }
         },
         {
-          "id": "a3838b67-c6d7-4967-922f-d7ffe9a8f567",
           "name": "Re-drive a failed order through the same pipeline",
           "request": {
             "name": "Re-drive a failed order through the same pipeline",
@@ -1834,7 +1714,6 @@
           },
           "response": [
             {
-              "id": "b0665ff8-02af-4439-9115-ee74c721520f",
               "name": "Retried",
               "originalRequest": {
                 "url": {
@@ -1853,15 +1732,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1890,12 +1763,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "ef22f6db-d258-4f4a-8f18-bb3f815ba3a6",
               "name": "Shipment is in a state that forbids the operation",
               "originalRequest": {
                 "url": {
@@ -1914,15 +1786,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "ORD-1001",
+                      "value": "{{orderId}}",
                       "key": "orderId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -1962,7 +1828,6 @@
           }
         },
         {
-          "id": "8149bd0c-eeba-4ac9-b5fe-ae1d2b93590c",
           "name": "Per-order outcomes for a bulk submission",
           "request": {
             "name": "Per-order outcomes for a bulk submission",
@@ -2015,7 +1880,6 @@
           },
           "response": [
             {
-              "id": "7fc06a78-47f9-4ce7-b530-223612fa265c",
               "name": "Batch status",
               "originalRequest": {
                 "url": {
@@ -2033,15 +1897,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "3f8f5b1a-1f2e-4d6b-9c0a-8b3c2d1e0f44",
+                      "value": "{{batchId}}",
                       "key": "batchId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -2070,12 +1928,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "d26a86cc-923b-426b-a881-13dff5b5ec30",
               "name": "Order or batch not found",
               "originalRequest": {
                 "url": {
@@ -2093,15 +1950,9 @@
                     {
                       "disabled": false,
                       "type": "any",
-                      "value": "3f8f5b1a-1f2e-4d6b-9c0a-8b3c2d1e0f44",
+                      "value": "{{batchId}}",
                       "key": "batchId",
                       "description": "(Required) "
-                    },
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
                     }
                   ]
                 },
@@ -2144,7 +1995,6 @@
       "event": []
     },
     {
-      "id": "5a59b9d0-5a46-4271-be7a-0a8bee8a36a6",
       "name": "Operations",
       "description": {
         "content": "",
@@ -2152,7 +2002,6 @@
       },
       "item": [
         {
-          "id": "7fd92adb-2f42-4560-9010-2fd17074eedd",
           "name": "Liveness probe - answers whenever the process is up",
           "request": {
             "name": "Liveness probe - answers whenever the process is up",
@@ -2178,7 +2027,6 @@
           },
           "response": [
             {
-              "id": "a8d0af02-dca1-435e-89be-834946e5b7ba",
               "name": "Process is alive",
               "originalRequest": {
                 "url": {
@@ -2189,14 +2037,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -2215,7 +2056,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -2226,7 +2067,6 @@
           }
         },
         {
-          "id": "0f8cca73-3d70-422a-8f85-d9f43d31e7a8",
           "name": "Readiness probe - checks Postgres, Redis and the courier registry",
           "request": {
             "name": "Readiness probe - checks Postgres, Redis and the courier registry",
@@ -2253,7 +2093,6 @@
           },
           "response": [
             {
-              "id": "7ae897ab-5a93-4660-a58e-cac6ac89d2a5",
               "name": "Every dependency is reachable",
               "originalRequest": {
                 "url": {
@@ -2265,14 +2104,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -2291,12 +2123,11 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b724d11f-8682-4807-8498-ae71e70e62f4",
               "name": "At least one dependency is down; the body names which",
               "originalRequest": {
                 "url": {
@@ -2308,14 +2139,7 @@
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "description": "Where this API is reachable",
-                      "type": "any",
-                      "value": "{{baseUrl}}",
-                      "key": "baseUrl"
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -2334,7 +2158,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"success\": false\n}",
+              "body": "{\n  \"success\": true\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -2356,6 +2180,10 @@
         "exec": [
           "pm.test('answers with the standard envelope', function () {",
           "  pm.expect(pm.response.json()).to.have.property('success');",
+          "});",
+          "",
+          "pm.test('does not fail on the server side', function () {",
+          "  pm.expect(pm.response.code).to.be.below(500);",
           "});",
           "",
           "const payload = pm.response.json().data;",
@@ -2392,7 +2220,6 @@
     }
   ],
   "info": {
-    "_postman_id": "43928b85-2b9a-4080-9230-111f313aadbf",
     "name": "Multi-Courier Integration Platform",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
