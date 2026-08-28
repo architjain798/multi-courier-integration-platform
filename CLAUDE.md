@@ -13,12 +13,15 @@ npm run dev              API with reload (WORKER_INLINE=true runs the queue work
 npm run dev:worker       queue worker on its own
 npm run build            tsc
 npm run lint             eslint
+npm run format:check     prettier --check (enforced in CI)
 npm run typecheck        tsc --noEmit
+npm run verify           lint + format + typecheck + unit, the gate CI runs first
 npm test                 vitest
 npm run test:int         integration suite (needs docker for testcontainers)
 npm run db:generate      drizzle-kit generate
 npm run db:migrate       apply migrations
 npm run docs:generate    write docs/openapi.json + regenerate the Postman collection
+                         output is deterministic; CI fails if it differs from what is committed
 docker compose up        postgres, redis, wiremock, api, worker
 ```
 

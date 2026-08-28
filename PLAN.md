@@ -182,7 +182,7 @@ src/
     config/                          zod-validated env
     logger/                          pino, request-id bound
     errors/                          AppError · error codes · HTTP mapping
-    http/                            request-id · api-key · validate · error-handler · envelope
+    http/                            request-id · access-log · body-errors · api-key · validate · error-handler · envelope
     openapi/                         registry · spec builder · Swagger UI mount
     queue/                           BullMQ connection + queue factory
 
