@@ -58,6 +58,9 @@ Verified by calling the UAT API — details in [docs/urbanebolt-api-findings.md]
 
 ## Hard rules
 
+- Pull requests are squash-merged, never merge-committed or rebase-merged. GitHub enforces this
+  — merge commits and rebase merges are disabled on the repository, so `gh pr merge` must use
+  `--squash`.
 - No JSDoc. No comments restating code. A comment only where something is genuinely surprising.
 - No `any`, no `as`, no `!`. Narrow properly.
 - Only `Error` subclasses are thrown. Operational errors carry `isOperational`.
